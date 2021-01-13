@@ -4,13 +4,14 @@ const path = require('path')
 const fdc = require('./index')
 
 http.createServer((req, res) => {
-  if (req.url == '/lock') {
+  console.log(req.url)
+  if (req.url.startsWith('/lock')) {
     fdc.open_device()
     fdc.lock()
     fdc.close_device()
     res.statusCode = 200
     res.end('locked')
-  } else if (req.url == '/unlock') {
+  } else if (req.url.startsWith('/unlock')) {
     fdc.open_device()
     fdc.unlock()
     fdc.close_device()
